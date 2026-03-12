@@ -2,9 +2,15 @@
   "name": "codebase-rag",
   "version": "1.0.0",
   "description": "Foundation project for building a RAG pipeline for a codebase in JS using langchain",
-  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "bun run --parallel --workspaces dev",
+    "build": "bun run --parallel --workspaces build",
+    "start": "bun run --parallel --workspaces start"
   },
   "repository": {
     "type": "git",
