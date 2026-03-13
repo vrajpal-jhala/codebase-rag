@@ -8,9 +8,18 @@
     "start": "bun run dist/index.js"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@langchain/community": "1.1.23",
+    "@langchain/core": "1.1.32",
+    "@langchain/ollama": "1.2.6",
+    "elysia": "latest",
+    "ignore": "7.0.5",
+    "kysely": "0.28.11",
+    "pg": "8.20.0",
+    "tree-sitter": "0.25.0",
+    "tree-sitter-wasms": "0.1.13"
   },
   "devDependencies": {
+    "@types/pg": "8.18.0",
     "bun-types": "latest"
   },
   "module": "src/index.js"

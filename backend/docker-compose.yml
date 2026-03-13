@@ -1,0 +1,33 @@
+services:
+  codebase_rag_ollama:
+    image: ollama/ollama:latest
+    container_name: codebase_rag_ollama
+    ports:
+      - 11434:11434
+    volumes:
+      - ./.data/ollama:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    restart: unless-stopped
+
+  codebase_rag_postgres:
+    image: pgvector/pgvector:pg18
+    container_name: codebase_rag_postgres
+    shm_size: 128mb
+    volumes:
+      - ../.data/postgres:/var/lib/postgresql/18/docker
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=codebase-rag
+    restart: unless-stopped
